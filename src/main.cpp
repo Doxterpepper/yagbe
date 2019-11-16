@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <SDL.h>
 
 #include "cpu.h"
 
