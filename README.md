@@ -1,9 +1,12 @@
 # YAGBE
 ## Yet Another Gameboy Emulator
 
+Building this emulator for the fun of it and for the learning experience.
+
 ## Building
 To build this project you're going to need [CMake](https://cmake.org/).
-To build from the command line make sure you have cmake installed then do the following
+
+To build from the command line make sure you have cmake installed then do the following:
 
 1. In the project directory create a new directory named `build`
 2. Enter the new `build` directory and run `cmake ../`.
