@@ -5,6 +5,21 @@
 
 using namespace std;
 
+// Seeks to the end of a file and sees how many bytes
+// that was. Then returns the length of the file.
+// Resets the file position to the beginning
+unsigned int file_length(ifstream* open_file) {
+  if (!open_file->is_open()) {
+    return 0;
+  }
+
+  open_file->seekg(0, open_file->end);
+  int length = open_file->tellg();
+  open_file->seekg(0, open_file->beg);
+
+  return length;
+}
+
 int main(int argc, char* argv[]) {
   cout << "Yet Another Gameboy Emulator" << endl;
 
@@ -14,25 +29,23 @@ int main(int argc, char* argv[]) {
   }
 
   ifstream rom_file(argv[1], ifstream::binary);
-  char* rom_buffer;
 
-  // Read rom file to rom_buffer
-  if (rom_file.is_open()) {
-    // Get length of the file.
-    rom_file.seekg(0, rom_file.end);
-    int length = rom_file.tellg();
-    rom_file.seekg(0, rom_file.beg);
-
-    cout << "Reading ROM: " << argv[1] << endl;
-    cout << "file size: " << length << endl;
-
-    // Read the entire file and store in rom_file
-    rom_buffer = new char[length];
-    rom_file.read(rom_buffer, length);
-    rom_file.close();
+  if (!rom_file.is_open()) {
+    cout << "Could not open rom file " << argv[1] << endl;
+    return 1;
   }
 
-  delete rom_buffer;
+  unsigned int length = file_length(&rom_file);
+
+  cout << "Reading ROM: " << argv[1] << endl;
+  cout << "file size: " << length << endl;
+
+  // Read the entire file and store in rom_file
+  char rom_buffer[length];
+  rom_file.read(rom_buffer, length);
+  rom_file.close();
+
+  Cpu gb_cpu(rom_buffer);
 
   return 0;
 }
