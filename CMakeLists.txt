@@ -15,6 +15,6 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(PROJECT_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 
 # The following folder will be included
-include_directories("${PROJECT_SOURCE_DIR}"/src)
+include_directories("${PROJECT_SOURCE_DIR}/src")
 
 add_executable(yagbe ${PROJECT_SOURCE_DIR}/main.cpp ${PROJECT_SOURCE_DIR}/cpu.cpp)
