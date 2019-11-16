@@ -4,7 +4,9 @@
 Building this emulator for the fun of it and for the learning experience.
 
 ## Building
-To build this project you're going to need [CMake](https://cmake.org/).
+To build this project you're going to need [CMake](https://cmake.org/) for building.
+
+You will also need [SDL](https://www.libsdl.org/) installed on your machine.
 
 To build from the command line make sure you have cmake installed then do the following:
 
