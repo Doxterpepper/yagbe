@@ -1,5 +1,5 @@
-#ifndef __YAGBE_CPU
-#define __YAGBE_CPU
+#ifndef __YAGBE_REGISTERS
+#define __YAGBE_REGISTERS
 
 struct cpu_registers {
   // The gameboy can combine specific registers into one 16 bit
@@ -34,17 +34,5 @@ struct cpu_registers {
   unsigned short sp;
   unsigned short pc; // Program counter
 } extern registers;
-
-class Cpu {
-  char* rom_buffer;
-  cpu_registers registers;
-
-  public:
-    Cpu(const char* rom_buffer);
-
-  private:
-    // Initialize registers of the CPU
-    void initialize_registers();
-};
 
 #endif

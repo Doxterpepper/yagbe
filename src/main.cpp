@@ -2,7 +2,7 @@
 #include <fstream>
 #include <SDL.h>
 
-#include "cpu.h"
+#include "gameboy.h"
 
 using namespace std;
 
@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
   rom_file.read(rom_buffer, length);
   rom_file.close();
 
-  Cpu gb_cpu(rom_buffer);
+  Gameboy gb_cpu(rom_buffer);
 
   return 0;
 }
