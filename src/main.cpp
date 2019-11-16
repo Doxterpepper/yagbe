@@ -29,6 +29,7 @@ int main(int argc, char* argv[]) {
     return 1;
   }
 
+  // argv[1] should be a path to the rom file we want to load
   ifstream rom_file(argv[1], ifstream::binary);
 
   if (!rom_file.is_open()) {
