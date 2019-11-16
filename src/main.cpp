@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "cpu.h"
+
 using namespace std;
 
 int main(int argc, char* argv[]) {
