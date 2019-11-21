@@ -33,6 +33,8 @@ class Cpu {
     void initialize_registers();
     void initialize_memory();
 
+    void undefined(short);
+
     // Because c++ won't let us use a generic void* to hold all our function pointers, we have to
     // make every opcode implementation take a short even though not all will actually use a short.
     // Some may take no arguments, some may take only one, but a short will hold all of them

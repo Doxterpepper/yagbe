@@ -14,3 +14,7 @@ void Cpu::initialize_registers() {
   reg.sp = 0xFFFE;
   reg.pc = 0x0100;
 }
+
+void Cpu::execute() {
+  short opcode = reg.pc;
+}

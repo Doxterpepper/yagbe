@@ -30,3 +30,13 @@ add_executable(yagbe ${PROJECT_SOURCE_DIR}/main.cpp
   ${PROJECT_SOURCE_DIR}/cpu.cpp
   ${PROJECT_SOURCE_DIR}/gameboy.cpp)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+
+
+set(UNIT_TEST_DIR ${CMAKE_SOURCE_DIR}/tests)
+add_library(Catch INTERFACE)
+target_include_directories(Catch INTERFACE  ${UNIT_TEST_DIR} ${PROJECT_SOURCE_DIR})
+add_executable(my_test ${UNIT_TEST_DIR}/test.cpp
+  ${PROJECT_SOURCE_DIR}/cpu.cpp)
+target_link_libraries(my_test Catch)
+enable_testing()
+add_test(NAME YagbeUnitTest COMMAND my_test)
