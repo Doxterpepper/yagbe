@@ -1,18 +1,12 @@
-#ifndef __YAGBE_CPU
-#define __YAGBE_CPU
+#ifndef __YAGBE_GAMEBOY
+#define __YAGBE_GAMEBOY
 
-#include "registers.h"
+#include "cpu.h"
 
 class Gameboy {
-  char* rom_buffer;
-  cpu_registers registers;
-
+  Cpu* cpu;
   public:
-    Gameboy(const char* rom_buffer);
-
-  private:
-    // Initialize registers of the CPU
-    void initialize_registers();
+    Gameboy(Cpu* cpu);
 };
 
 #endif

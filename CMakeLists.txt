@@ -26,5 +26,7 @@ include_directories("${PROJECT_SOURCE_DIR}/src" ${SDL2_INCLUDE_DIRS})
 #include_directories(${SDL2_INCLUDE_DIRS})
 
 #target_link_libraries(yagbe ${SDL2_LIBRARY})
-add_executable(yagbe ${PROJECT_SOURCE_DIR}/main.cpp ${PROJECT_SOURCE_DIR}/gameboy.cpp)
+add_executable(yagbe ${PROJECT_SOURCE_DIR}/main.cpp
+  ${PROJECT_SOURCE_DIR}/cpu.cpp
+  ${PROJECT_SOURCE_DIR}/gameboy.cpp)
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
