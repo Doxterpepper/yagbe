@@ -23,7 +23,7 @@ struct instruction {
 class Cpu {
   char* memory;
   struct cpu_registers reg;
-  struct instruction instructions[256];
+  const struct instruction instructions[256];
 
   public:
     Cpu(char* memory);

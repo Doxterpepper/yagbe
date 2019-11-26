@@ -3,6 +3,7 @@
 #include <SDL.h>
 
 #include "gameboy.h"
+#include "cpu.h"
 
 using namespace std;
 
@@ -21,14 +22,42 @@ unsigned int file_length(ifstream* open_file) {
   return length;
 }
 
+int initialize_window() {
+  if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+    cout << "SDL_Init Error: " << SDL_GetError() << endl;
+    return 1;
+  }
+
+  SDL_Window* win = SDL_CreateWindow("YAGBE", 100, 100, 640, 480, SDL_WINDOW_SHOWN);
+
+  if (win == nullptr) {
+    cout << "SDL_CreateWindow Error: " << SDL_GetError() << endl;
+    SDL_Quit();
+    return 1;
+  }
+
+  SDL_Renderer *ren = SDL_CreateRenderer(win, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  if (ren == nullptr){
+    SDL_DestroyWindow(win);
+    std::cout << "SDL_CreateRenderer Error: " << SDL_GetError() << std::endl;
+    SDL_Quit();
+    return 1;
+  }
+
+  return 0;
+}
+
 int main(int argc, char* argv[]) {
-  cout << "Yet Another Gameboy Emulator" << endl;
+  cout << "+------------------------------+" << endl;
+  cout << "| Yet Another Gameboy Emulator |" << endl;
+  cout << "+------------------------------+" << endl;
+  cout << endl;
 
   if (argc < 2) {
     cout << "Please specify a rom" << endl;
     return 1;
   }
-
+  
   // argv[1] should be a path to the rom file we want to load
   ifstream rom_file(argv[1], ifstream::binary);
 
@@ -47,7 +76,10 @@ int main(int argc, char* argv[]) {
   rom_file.read(rom_buffer, length);
   rom_file.close();
 
-  Gameboy gb_cpu(rom_buffer);
+  Cpu processor(rom_buffer);
+  Gameboy gameboy(&processor);
+
+  SDL_Quit();
 
   return 0;
 }

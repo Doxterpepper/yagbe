@@ -28,11 +28,16 @@ struct cpu_registers {
     };
     unsigned short de;
   };
-  unsigned char h;
-  unsigned char l;
+  union {
+    struct {
+      unsigned char h;
+      unsigned char l;
+    };
+    unsigned short hl;
+  };
   unsigned char flags; // Flags are assigned on a per bit basis
   unsigned short sp;
   unsigned short pc; // Program counter
-} extern registers;
+};
 
 #endif
